@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+           display: grid;
+           grid-template-columns: repeat(6,1fr);
+           grid-template-rows: auto;
+           gap: 10px;
+           margin-top: 30px;
+        }
+        #box{
+
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+            background-color: antiquewhite;
+            text-align: center;
+    }
+    #navbar{
+        color: wheat;
+        text-align:center;
+         background-color: #10658e;
+         height: 100px;
+         margin: -10px;
+         padding: 5px;
+       }
+       button{
+           padding: 10px;
+           font-size: 15px;
+           background-color: antiquewhite;
+          cursor: pointer;
+     } 
+     #btn{
+         margin-left: 100px;
+         
+     }
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        
+        <input type="text" placeholder="Enter city name" id="city">
+        <button onclick="getforecast()">submit</button>
+        <a href="index.html"> <button id="btn">Home</button></a>
+        <h2>daily forecast of a city for next 7 days with time</h2>
+        
+       
+    </div>
+   
+
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+    
+    function getforecast(){
+        let city = document.getElementById("city").value;
+       const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=27cd6fa58f5d120a8c41d54ebdd3a016`
+        fetch(url)
+        .then(function(res){
+            return res.json();
+        })
+        .then(function(res){
+            append(res.list)
+            console.log(res.list);
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+
+
+    }
+
+    function append(data){
+        document.querySelector("#container").innerHTML=null;
+        data.map(function(elem){
+            let box = document.createElement("div")
+            
+            box.setAttribute("id","box")
+
+            let date_time = document.createElement("h3")
+            date_time.textContent=elem.dt_txt;
+
+            let maxtemp = document.createElement("h3")
+            maxtemp.textContent=Math.floor(Number(elem.main.temp_max)-273.15)+"°C";
+
+            let mintemp = document.createElement("h3")
+            mintemp.textContent=Math.floor(Number(elem.main.temp_min)-273.15)+"°C";
+
+            let icon = document.createElement("img")
+            icon.src="https://img.icons8.com/color/2x/partly-cloudy-day--v1.png"
+
+            box.append(date_time,icon,maxtemp,mintemp)
+
+            document.querySelector("#container").append(box)
+        })
+        city.value="";
+
+    
+     }
+     
+    
+
+    
+
+
+</script>

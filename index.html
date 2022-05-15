@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-image: url("https://img.freepik.com/free-vector/realistic-weather-widget_1284-4092.jpg?w=740&t=st=1650212703~exp=1650213303~hmac=ec457420fb3d110224bf068c9e8ee50e3cc7af03df99f8b5880f25f0de615a6d");
+        }
+        h2{
+            font-family: cursive;
+        }
+        #maincontainer{
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            grid-row: auto;
+            
+        }
+      #navbar{
+    
+        color: wheat;
+        text-align:center;
+         background-color: #10658e;
+         height: 100px;
+         margin: -10px;
+       }
+      button{
+           padding: 10px;
+           font-size: 15px;
+           background-color: antiquewhite;
+          cursor: pointer;
+          
+
+         } 
+         #container{
+             font-family: sans-serif;
+             color: antiquewhite;
+             background-image: url("https://images.pexels.com/photos/1253748/pexels-photo-1253748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+         }
+         #sunimg
+         {
+             height: 150px;
+             width: 50%;
+         }
+    </style>
+    
+</head>
+<body>
+   
+    <div id="navbar">
+        <h2>myweatherapp</h2>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="getdata()">submit</button>
+       <a href="forcast.html"><button>Daily forcast</button></a> 
+    </div>
+    
+    <div id="maincontainer">
+        <div id="container"></div>
+        <div id="mapbox"></div>
+    </div>
+    
+    
+  
+
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="700"
+             height="700"
+              id="gmap_canvas" 
+              frameborder="0" 
+              scrolling="no"
+               marginheight="0" 
+               marginwidth="0">
+
+            </iframe>
+            
+        </div>
+    </div>
+      
+    
+</body>
+</html>
+
+<script src="index.js"></script>
